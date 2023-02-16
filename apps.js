@@ -1,7 +1,8 @@
-const getnotes=require('./notes.js')
+const notes=require('./notes.js')
 const validator= require('validator')
 const chalk= require('chalk')
 const yargs=require('yargs')
+const { demandOption } = require('yargs')
 //const notepad=getnotes("Alhamdulillah")
 //const color=chalk.bold.blue
 //console.log(notepad)
@@ -22,15 +23,36 @@ yargs.version('1.0.0')
 yargs.command({
    command:'Add',
    describe:'Adds a new value',
-   handler:function(){
-    console.log('Adding a new value')
+   builder:{
+    title: {
+        describe:"Add titles",
+        demandOption: true,
+        type:'string'
+
+    },
+    body:{
+        describe:"Add body",
+        demandOption:true,
+        type:'string'
+    }
+},
+   handler:function(argv){
+    notes.addNotes(argv.title,argv.body)
    }
 })
 yargs.command({
     command:"remove",
     describe:"to remove a value",
-    handler:function(){
-        console.log('Removing a new value')
+    builder:{
+        title: {
+            describe:"remove titles",
+            demandOption: true,
+            type:'string'
+        },
+
+    },
+    handler:function(argv){
+        notes.removeNotes(argv.title)
     }
 })
 //to list a command
@@ -49,5 +71,6 @@ yargs.command({
         console.log('reading a new value')
     }
 })
-console.log(yargs.argv)
+//console.log(yargs.argv)
+yargs.parse()
 
