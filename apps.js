@@ -19,7 +19,7 @@ if(val==='Alhamdulillah'){
 */
 //Customize yargs version
 yargs.version('1.0.0')
-//Add command
+//to add data
 yargs.command({
    command:'Add',
    describe:'Adds a new value',
@@ -38,6 +38,7 @@ yargs.command({
 },
    handler:(argv)=>notes.addNotes(argv.title,argv.body)
 })
+//to remove data
 yargs.command({
     command:"remove",
     describe:"to remove a value",
@@ -52,13 +53,13 @@ yargs.command({
     handler:(argv)=> notes.removeNotes(argv.title)
 
 })
-//to list a command
+//to list data
 yargs.command({
     command:"list",
     describe:"to list a value",
     handler:()=>notes.listNotes()
 })
-//to read a command
+//to read data
 yargs.command({
     command:"read",
     describe:"to read a value",

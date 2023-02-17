@@ -7,8 +7,11 @@ const getnotes= ()=> {
 //Add notes
 const addNotes= (title, body)=>{
    const notes=loadNotes()
-   const duplicatedNotes= notes.filter((note)=> note.title=== title)
+   //const duplicatedNotes= notes.filter((note)=> note.title=== title)
    const duplicatedNote= notes.find((note)=> note.title=== title)
+
+   debugger//node inspect apps.js Add --title="wo" --body="ye", then go for chrome://inspect
+
    if(!duplicatedNote){
     notes.push({
         title:title,
